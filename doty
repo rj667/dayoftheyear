@@ -19,7 +19,6 @@ try:
 except:
     try:
         month = sys.argv[1]
-        day = '{:02d}'.format(int(sys.argv[2]))
         day = f'{int(sys.argv[2]):02d}'
     except:
         month = date.today().strftime('%b').lower()
