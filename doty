@@ -12,7 +12,7 @@ day = ''
 message = ''
 
 try:
-    # try file first
+    # try file first, useful for debugging
     with open(sys.argv[1]) as file:
         html = file.read()
 
@@ -37,6 +37,7 @@ except:
 page = lxml.html.document_fromstring(html)
 
 for section in page.cssselect('.section.section--group'):
+    # this gives 2 sections: one for the day, one for the month
     head = section.cssselect('.heading')[0].text
     message += f'{head}'
     links = []
@@ -48,6 +49,7 @@ for section in page.cssselect('.section.section--group'):
         message += f' {", ".join(links)}. '
     else:
         message += ' nothing special.'
+    # print month-section only on the first day of the month
     if day != '01': break
 
 if webhook:
