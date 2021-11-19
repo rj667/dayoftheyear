@@ -55,9 +55,7 @@ for section in page.cssselect('.section.section--group'):
 if webhook:
     payload = {'username': 'Doty', 'text': message }
     r = requests.post(webhook, json=payload)
-    if r.ok:
-        sys.exit(0)
-    else:
+    if not r.ok:
         print(f'{r.status_code} {r.reason}', file=sys.stderr)
         sys.exit(1)
 else:
