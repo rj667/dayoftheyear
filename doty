@@ -48,7 +48,7 @@ for section in page.cssselect('.section.section--group'):
     if links:
         message += f' {", ".join(links)}. '
     else:
-        message += ' nothing special.'
+        message += ' nothing special. '
     # print month-section only on the first day of the month
     if day != '01': break
 
