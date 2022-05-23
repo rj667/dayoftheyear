@@ -41,7 +41,7 @@ for section in page.cssselect('.section.section--group'):
     message += f'{head}'
     links = []
     for event in section.cssselect('.js-link-target'):
-        name = event.text
+        name = event.text_content().replace('\xa0', ' ')
         url = event.get('href')
         links.append(f'[{name}]({url})')
     if links:
