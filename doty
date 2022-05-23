@@ -6,7 +6,7 @@ from datetime import date
 import requests
 import lxml.html
 
-baseurl = 'https://www.daysoftheyear.com/days'
+dayurl = baseurl = 'https://www.daysoftheyear.com/days'
 webhook = getenv('DOTY_WEBHOOK')
 day = ''
 message = ''
@@ -26,11 +26,11 @@ except:
 
     try:
         year = sys.argv[3]
-        url = f'{baseurl}/{month}/{day}/{year}'
+        dayurl = f'{baseurl}/{month}/{day}/{year}'
     except:
-        url = f'{baseurl}/{month}/{day}'
+        dayurl = f'{baseurl}/{month}/{day}'
 
-    r = requests.get(url)
+    r = requests.get(dayurl)
     html = r.content
 
 page = lxml.html.document_fromstring(html)
@@ -60,4 +60,5 @@ if webhook:
         print(f'{r.status_code} {r.reason}', file=sys.stderr)
         sys.exit(1)
 else:
+    print(dayurl)
     print(message, end='')
