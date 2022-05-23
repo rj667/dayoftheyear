@@ -37,7 +37,9 @@ page = lxml.html.document_fromstring(html)
 
 for section in page.cssselect('.section.section--group'):
     # this gives 2 sections: one for the day, one for the month
-    head = section.cssselect('.heading')[0].text
+    head = ' '.join(section.cssselect('.heading')[0].text.split())
+    if not head:
+        head = page.cssselect('.banner__title.heading')[0].text + ' is ...'
     message += f'{head}'
     links = []
     for event in section.cssselect('.js-link-target'):
