@@ -47,9 +47,9 @@ for section in page.cssselect('.section.section--group'):
         url = event.get('href')
         links.append(f'[{name}]({url})')
     if links:
-        message += f' {", ".join(links)}. '
+        message += f' {", ".join(links)}.\n'
     else:
-        message += ' nothing special. '
+        message += ' nothing special.\n'
     # print month-section only on the first day of the month
     if day != '01': break
 
@@ -60,4 +60,4 @@ if webhook:
         print(f'{r.status_code} {r.reason}', file=sys.stderr)
         sys.exit(1)
 else:
-    print(message)
+    print(message, end='')
