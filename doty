@@ -54,7 +54,14 @@ for section in page.cssselect('.section.section--group'):
     if day != '01': break
 
 if webhook:
-    payload = {'username': 'Doty', 'text': message }
+    if webhook.find('webhook.office.com/') >= 0:
+        payload = {
+            '@context': 'https://schema.org/extensions',
+            '@type': 'MessageCard',
+            'text': message
+        }
+    else:
+        payload = {'username': 'Doty', 'text': message }
     r = requests.post(webhook, json=payload)
     if not r.ok:
         print(f'{r.status_code} {r.reason}', file=sys.stderr)
