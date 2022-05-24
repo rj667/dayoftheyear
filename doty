@@ -40,14 +40,14 @@ for section in page.cssselect('.section.section--group'):
     head = ' '.join(section.cssselect('.heading')[0].text.split())
     if not head:
         head = page.cssselect('.banner__title.heading')[0].text + ' is ...'
-    message += f'{head}'
+    message += f'**{head}**'
     links = []
     for event in section.cssselect('.js-link-target'):
         name = event.text_content().replace('\xa0', ' ')
         url = event.get('href')
         links.append(f'[{name}]({url})')
     if links:
-        message += f' {", ".join(links)}.\n'
+        message += f' {", ".join(links)}.\n\n'
     else:
         message += ' nothing special.\n'
     # print month-section only on the first day of the month
